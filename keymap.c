@@ -75,9 +75,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 [_MOVE] = KEYMAP(
-  KC_TAB,  KC_WH_L, KC_WH_U, KC_WH_R, KC_ACL0, KC_ACL1, KC_ACL2, KC_PGUP, KC_TAB,  KC_LCBR, KC_HOME, KC_PIPE, \
-  _______, _______, KC_WH_D, KC_PGDN, KC_BTN1, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_QUOT, _______, \
-  _______, KC_MS_D, KC_MS_U, KC_MS_R, KC_F11,  KC_F12,  KC_END , KC_ENT,  KC_BSPC, _______, _______, _______, \
+  KC_TAB,  KC_WH_L, KC_WH_U, KC_END , _______, _______, _______, KC_PGUP, KC_TAB,  KC_LCBR, KC_HOME, KC_PIPE, \
+  _______, KC_HOME, KC_WH_D, KC_PGDN, KC_BTN1, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_QUOT, _______, \
+  _______, _______, KC_WH_L, KC_WH_R, KC_F11,  KC_F12,  KC_END , KC_ENT,  KC_BSPC, _______, _______, _______, \
   _______, _______, _______, KC_BTN3, KC_BTN2, KC_BTN1, _______, _______, _______, _______, _______, _______ \
 ),
 
@@ -90,19 +90,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* Adjust (Lower + Raise) */
 [_ADJUST] =  KEYMAP( \
-  _______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_DEL, \
-  _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, _______,  _______, _______, \
+  _______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 )
 
 
 };
-
-#ifdef AUDIO_ENABLE
-float tone_qwerty[][2]     = SONG(QWERTY_SOUND);
-float tone_colemak[][2]    = SONG(COLEMAK_SOUND);
-#endif
 
 void persistant_default_layer_set(uint16_t default_layer) {
   eeconfig_update_default_layer(default_layer);
@@ -113,18 +108,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_NOTE_ARRAY(tone_qwerty, false, 0);
-        #endif
         persistant_default_layer_set(1UL<<_QWERTY);
       }
       return false;
       break;
     case COLEMAK:
       if (record->event.pressed) {
-        #ifdef AUDIO_ENABLE
-          PLAY_NOTE_ARRAY(tone_colemak, false, 0);
-        #endif
         persistant_default_layer_set(1UL<<_COLEMAK);
       }
       return false;
