@@ -11,7 +11,6 @@ extern keymap_config_t keymap_config;
 enum custom_layers {
 _QWERTY,
 _QGMLWY,
-_COLEMAK,
 _LOWER,
 _RAISE,
 _MOVE,
@@ -20,12 +19,8 @@ _ADJUST,
 };
 
 enum custom_keycodes {
-  QWERTY = SAFE_RANGE,
-  COLEMAK,
-  LOWER,
+  LOWER = SAFE_RANGE,
   RAISE,
-  MOVE,
-  MOUSE,
   ADJUST,
 };
 
@@ -50,13 +45,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_D,    KC_S,    KC_T,    KC_N,    KC_R,    KC_I,    KC_A,    KC_E,    KC_O,    KC_H,    _______,
   _______, KC_Z,    KC_X,    KC_C,    KC_V,    KC_J,    KC_K,    KC_P,    _______, _______, _______, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-),
-
-[_COLEMAK] = KEYMAP( \
-  KC_TAB,  KC_Q,    KC_W,    KC_F,    KC_P,    KC_G,    KC_J,    KC_L,    KC_U,    KC_Y,    KC_SCLN, KC_BSPC, \
-  KC_ESC,  KC_A,    KC_R,    KC_S,    KC_T,    KC_D,    KC_H,    KC_N,    KC_E,    KC_I,    KC_O,    KC_QUOT, \
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_K,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT , \
-  ADJUST,  KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT \
 ),
 
 [_LOWER] = KEYMAP( \
@@ -88,10 +76,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______, _______, _______, _______, _______, KC_WH_D, _______, _______, _______, _______, _______, \
   _______, _______, _______, KC_BTN3, KC_BTN2, KC_BTN1, _______, KC_ACL2, KC_ACL1, KC_ACL0, RESET,   _______ \
 ),
-/* Adjust (Lower + Raise) */
+
 [_ADJUST] =  KEYMAP( \
   _______, RESET,   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  COLEMAK, _______, _______, _______, \
+  _______, _______, _______, AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 )
@@ -99,25 +87,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-void persistant_default_layer_set(uint16_t default_layer) {
-  eeconfig_update_default_layer(default_layer);
-  default_layer_set(default_layer);
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case QWERTY:
-      if (record->event.pressed) {
-        persistant_default_layer_set(1UL<<_QWERTY);
-      }
-      return false;
-      break;
-    case COLEMAK:
-      if (record->event.pressed) {
-        persistant_default_layer_set(1UL<<_COLEMAK);
-      }
-      return false;
-      break;
     case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);
@@ -135,14 +106,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       } else {
         layer_off(_RAISE);
         update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
-      break;
-    case ADJUST:
-      if (record->event.pressed) {
-        layer_on(_ADJUST);
-      } else {
-        layer_off(_ADJUST);
       }
       return false;
       break;
