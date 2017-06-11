@@ -13,6 +13,7 @@ _QWERTY,
 _QGMLWY,
 _LOWER,
 _RAISE,
+_FUNCTION,
 _MOVE,
 _MOUSE,
 _ADJUST,
@@ -32,6 +33,11 @@ enum custom_keycodes {
 #define ESC_MSL LT(_MOUSE, KC_ESC)
 #define KC_SSPC SFT_T(KC_SPC)
 
+#define OSM_GUI OSM(MOD_RGUI)
+#define OSM_ALT OSM(MOD_RALT)
+#define OSM_SFT OSM(MOD_RSFT)
+#define OSM_CTL OSM(MOD_RCTL)
+#define OSL_FUN OSL(_FUNCTION)
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTY] = KEYMAP( \
@@ -56,9 +62,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_RAISE] = KEYMAP( \
-  KC_GRV,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, \
+  KC_TILD, KC_F1,   OSM_GUI, OSM_ALT, OSM_SFT, KC_F5,   KC_F6,   OSL_FUN, KC_EQL,  KC_LBRC, KC_RBRC, KC_BSLS, \
   _______, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    _______, \
-  _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, _______, \
+  _______, KC_F7,   KC_F8,   OSM_CTL, KC_F10,  KC_F11,  KC_F12,  KC_MINS, KC_EQL,  KC_LBRC, KC_RBRC, _______, \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
+),
+
+[_FUNCTION] = KEYMAP( \
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______, \
+  _______, _______, _______, _______, KC_F11,  KC_F12,  _______, _______, _______, _______, _______, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 ),
 
