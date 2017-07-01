@@ -23,7 +23,9 @@ enum custom_keycodes {
   LOWER = SAFE_RANGE,
   RAISE,
   ADJUST,
+  DYNAMIC_MACRO_RANGE,
 };
+#include "dynamic_macro.h"
 
 // Fillers to make layering more clear
 #define _______ KC_TRNS
@@ -41,6 +43,12 @@ enum custom_keycodes {
 
 #define CTL_TAB LCTL(KC_TAB)
 #define CTLSTAB LCTL(LSFT(KC_TAB))
+
+#define MCR1_RC DYN_REC_START1
+#define MCR2_RC DYN_REC_START2
+#define MCR1_PL DYN_MACRO_PLAY1
+#define MCR2_PL DYN_MACRO_PLAY2
+#define MCR_STP DYN_REC_STOP
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -73,10 +81,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_FUNCTION] = KEYMAP( \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, MCR1_RC, MCR1_PL, MCR2_RC, MCR2_PL, _______, _______, _______, _______, _______, _______, _______, \
   _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  _______, \
-  _______, _______, _______, _______, KC_F11,  KC_F12,  _______, _______, _______, _______, _______, _______, \
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
+  _______, KC_F11,  KC_F12,  _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+  _______, MCR_STP, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 ),
 
 
@@ -105,6 +113,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+
+  if (!process_record_dynamic_macro(keycode, record)) {
+    return false;
+  }
+
   switch (keycode) {
     case LOWER:
       if (record->event.pressed) {
