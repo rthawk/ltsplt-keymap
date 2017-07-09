@@ -54,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_QWERTY] = KEYMAP( \
   ESC_MSL, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    ALT_T(KC_BSPC), \
-  KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, CTL_T(KC_QUOT), \
+  KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
   KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_T(KC_SLSH), \
   MO_MOVE, KC_LGUI, KC_LCTL, KC_LALT, LOWER,   KC_SPC,  KC_SSPC, RAISE,   KC_RCTL, KC_RALT, TG(_QGMLWY),   KC_RGUI \
 ),
@@ -67,9 +67,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_LOWER] = KEYMAP( \
-  KC_GRV,  KC_F1,   KC_F2,   CTLSTAB, KC_F4,   KC_F5,   KC_F6,   KC_UNDS, CTL_TAB, KC_LCBR, KC_RCBR, KC_BSLS, \
+  KC_GRV,  CTLSTAB, OSM_GUI, OSM_ALT, KC_F4,   KC_F5,   KC_F6,   KC_UNDS, CTL_TAB, KC_LCBR, KC_RCBR, KC_BSLS, \
   _______, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC, \
-  _______, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_ENT,  KC_PLUS, KC_LBRC, KC_RBRC, _______, \
+  _______, KC_F7,   KC_F8,   OSM_CTL, KC_F10,  KC_F11,  KC_F12,  KC_ENT,  KC_PLUS, KC_LBRC, KC_RBRC, _______, \
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______ \
 ),
 
