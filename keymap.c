@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_QWERTY] = KEYMAP( \
   ESC_MSL, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    ALT_T(KC_BSPC), \
   KC_LCTL, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, \
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_T(KC_SLSH), \
+  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, SFT_T(KC_ENT), \
   MO_MOVE, KC_LGUI, KC_LCTL, KC_LALT, LOWER,   KC_SPC,  KC_SSPC, RAISE,   KC_RCTL, KC_RALT, TG(_QGMLWY),   KC_RGUI \
 ),
 
@@ -89,9 +89,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 
 [_MOVE] = KEYMAP(
-  KC_TAB,  KC_WH_L, KC_WH_U, KC_END , _______, _______, _______, KC_PGUP, KC_TAB,  KC_LCBR, KC_HOME, KC_PIPE, \
+  KC_TAB,  KC_WH_L, KC_WH_U, KC_END , KC_ENT,  _______, _______, KC_PGUP, KC_TAB,  KC_LCBR, KC_HOME, KC_PIPE, \
   _______, KC_HOME, KC_WH_D, KC_PGDN, KC_BTN1, _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_QUOT, _______, \
-  _______, _______, KC_WH_L, KC_WH_R, KC_F11,  KC_F12,  KC_END , KC_ENT,  KC_BSPC, _______, _______, _______, \
+  _______, _______, KC_WH_L, KC_WH_R, KC_F11,  KC_F12,  KC_END , KC_ENT,  KC_QUOT, KC_DQT,  _______, _______, \
   _______, _______, _______, KC_BTN3, KC_BTN2, KC_BTN1, _______, _______, _______, _______, _______, _______ \
 ),
 
